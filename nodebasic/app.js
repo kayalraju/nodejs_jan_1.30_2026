@@ -11,6 +11,9 @@ const app=express();
 app.set('view engine','ejs')
 app.set('views','views')
 
+//static files
+app.use(express.static(path.join(__dirname,'public'))); 
+
 const homeroute=require('./app/routes/homeroute')
 app.use(homeroute);
 
