@@ -3,6 +3,8 @@ const Student = require("../models/student");
 class StudentApiController {
     async createStudent(req, res) {
         //console.log(req.body);
+        //console.log(req.file);
+        
         try {
         const { name, email, city } = req.body;
         const data = new Student({
@@ -10,6 +12,10 @@ class StudentApiController {
             email,
             city,
         });
+
+        if(req.file){
+            data.image = req.file.path;
+        }
         const student = await data.save();
         return res.status(201).json({
             success: true,

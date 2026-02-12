@@ -13,6 +13,10 @@ const Schema = mongoose.Schema;
         city:{
             type: String,
             required: true
+        },
+        image:{
+            type: String,
+            default: 'default.jpg'
         }
         
      })
