@@ -4,6 +4,9 @@ const path=require('path')
 const ejs=require('ejs')
 const DatabaseConnection=require('./app/config/dbcon')
 const cors=require('cors')
+const morgan=require('morgan')
+const helmet=require('helmet')
+const RateLimit=require('./app/utils/limiter')
 
 
 // console.log(path);
@@ -14,6 +17,9 @@ const app=express();
 //database connection
 DatabaseConnection()
 
+app.use(morgan('dev'))
+app.use(helmet())
+app.use(RateLimit)
 app.use(cors());
 app.set('view engine','ejs')
 app.set('views','views')
@@ -35,13 +41,8 @@ const studentApiRoute=require('./app/routes/studentApiRoute')
 app.use('/api/v1',studentApiRoute);
 
 
-app.get('/about',(req,res)=>{
-    res.send("about page")
-})
-
-app.get('/contact',(req,res)=>{
-    res.send("contact page")
-})
+const joiRoute=require('./app/routes/joiRoute')
+app.use(joiRoute);  
 
 
 
