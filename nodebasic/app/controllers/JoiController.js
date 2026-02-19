@@ -9,9 +9,6 @@ class JoiController{
 
     async createDAta(req,res){
     
-        
-        
-
         try{
             const data={
                 name:req.body.name,

@@ -42,7 +42,10 @@ app.use('/api/v1',studentApiRoute);
 
 
 const joiRoute=require('./app/routes/joiRoute')
-app.use(joiRoute);  
+app.use(joiRoute); 
+
+const csvRoute=require('./app/routes/csvRoute')
+app.use(csvRoute);  
 
 
 
