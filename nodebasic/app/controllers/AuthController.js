@@ -79,7 +79,7 @@ class AuthController {
                     phone:user.phone
                 },process.env.JWT_SECRET_KEY,{expiresIn:"1h"})
 
-                return res.status(StatusCode.OK).json({
+                return res.status(200).json({
                     success:true,
                     message:"user login successfully",
                     data:{
@@ -107,6 +107,32 @@ class AuthController {
 
         }
 
+    }
+
+
+    async dashboard(req,res){
+        try{
+            return res.status(200).json({
+                success:true,
+                message:"welcome to user dashboard",
+                data:req.user
+            })
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+    async profile(req,res){
+        try{
+            return res.status(200).json({
+                success:true,
+                message:"welcome to user dashboard",
+                data:req.user
+            })
+
+        }catch(error){
+            console.log(error);
+        }
     }
 }
 
