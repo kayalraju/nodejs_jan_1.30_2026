@@ -7,10 +7,8 @@ const cors=require('cors')
 const morgan=require('morgan')
 const helmet=require('helmet')
 const RateLimit=require('./app/utils/limiter')
-
-
-// console.log(path);
-
+const session=require('express-session')
+const cookieParser=require('cookie-parser')
 
 const app=express();
 
@@ -32,30 +30,23 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('uploads',express.static(path.join(__dirname,'/uploads')))
 app.use('/uploads',express.static('uploads')); 
 
+//session
+app.use(session({
+    secret: 'keyboardcat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        maxAge: 1000 * 60 * 60 * 24 // 24 hours
+     }
+  }))
+  app.use(cookieParser())
 
-const authRoute=require('./app/routes/authRoute')
-app.use('/api/v1',authRoute);
-
-const studentejsRoute=require('./app/routes/studentejsRoute')
-app.use(studentejsRoute);
-
-const homeroute=require('./app/routes/homeroute')
-app.use(homeroute);
-const studentApiRoute=require('./app/routes/studentApiRoute')
-app.use('/api/v1',studentApiRoute);
-
-
-const joiRoute=require('./app/routes/joiRoute')
-app.use(joiRoute); 
-
-const csvRoute=require('./app/routes/csvRoute')
-app.use(csvRoute);  
+//define routes
+app.use(require('./app/routes/index'))  
 
 
 
 const port =3004
-
-
 app.listen(port,()=>{
     console.log("server is running on port",port)
 })
