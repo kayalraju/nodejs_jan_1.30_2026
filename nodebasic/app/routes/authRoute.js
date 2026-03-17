@@ -9,6 +9,7 @@ const router=express.Router();
 
 
 router.post('/register',AuthController.register)
+router.post('/verify',AuthController.verify)
 router.post('/login',AuthController.login)
 
 //router.use(authCheck)
