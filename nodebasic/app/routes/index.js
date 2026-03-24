@@ -11,8 +11,10 @@ const studentejsRoute=require('./studentejsRoute')
 const authEjsRoute=require('./authEjsRoute')
 const joiRoute=require('./joiRoute')
 const adminRoute=require('./adminRoute')
+const AggrigrationRoute=require('./AggrigrationRoute')
 
 
+router.use(AggrigrationRoute)
 router.use(authEjsRoute)
 router.use('/csv',csvRoute)
 router.use(homeroute)
