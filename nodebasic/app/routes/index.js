@@ -12,8 +12,9 @@ const authEjsRoute=require('./authEjsRoute')
 const joiRoute=require('./joiRoute')
 const adminRoute=require('./adminRoute')
 const AggrigrationRoute=require('./AggrigrationRoute')
+const LookupRoute=require('./lookupRoute')
 
-
+router.use(LookupRoute)
 router.use(AggrigrationRoute)
 router.use(authEjsRoute)
 router.use('/csv',csvRoute)
