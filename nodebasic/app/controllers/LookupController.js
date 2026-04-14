@@ -67,19 +67,19 @@ class LookupController {
         //     $unwind:"$category"
         // }
         //group category
-        {
-          $group: {
-            _id: "$category.categoryName",
-            subCategories: {
-              $push: {
-                subCategoryName: "$subCategoryName",
-              },
-            },
-            total: {
-              $sum: 1,
-            },
-          },
-        },
+        // {
+        //   $group: {
+        //     _id: "$category.categoryName",
+        //     subCategories: {
+        //       $push: {
+        //         subCategoryName: "$subCategoryName",
+        //       },
+        //     },
+        //     total: {
+        //       $sum: 1,
+        //     },
+        //   },
+        // },
         
       ]
 
