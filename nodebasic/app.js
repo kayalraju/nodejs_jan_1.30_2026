@@ -9,6 +9,11 @@ const helmet=require('helmet')
 const RateLimit=require('./app/utils/limiter')
 const session=require('express-session')
 const cookieParser=require('cookie-parser')
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const SwaggerOptions = require('./swagger.json');
+const swaggerDocument = swaggerJsDoc(SwaggerOptions);
+
 
 const app=express();
 
@@ -30,6 +35,8 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('uploads',express.static(path.join(__dirname,'/uploads')))
 app.use('/uploads',express.static('uploads')); 
 
+
+
 //session
 app.use(session({
     secret: 'keyboardcat',
@@ -40,6 +47,8 @@ app.use(session({
      }
   }))
   app.use(cookieParser())
+
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //define routes
 app.use(require('./app/routes/index'))  

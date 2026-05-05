@@ -13,9 +13,9 @@ class StudentApiController {
             city,
         });
 
-        if(req.file){
-            data.image = req.file.path;
-        }
+        // if(req.file){
+        //     data.image = req.file.path;
+        // }
         const student = await data.save();
         return res.status(201).json({
             success: true,
