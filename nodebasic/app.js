@@ -12,6 +12,7 @@ const cookieParser=require('cookie-parser')
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const SwaggerOptions = require('./swagger.json');
+const  logger  = require('./app/utils/logger');
 const swaggerDocument = swaggerJsDoc(SwaggerOptions);
 
 
@@ -57,5 +58,7 @@ app.use(require('./app/routes/index'))
 
 const port =3004
 app.listen(port,()=>{
-    console.log("server is running on port",port)
+   
+    logger.info("server is running on port",port)
+    console.log('server running');
 })

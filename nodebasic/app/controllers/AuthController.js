@@ -6,6 +6,7 @@ const StatusCode = require('../utils/statusCode')
 const sendEmail = require('../utils/sendMail')
 const OTPModel=require('../models/otpModel')
 const transporter=require('../config/emailConfig')
+const logger = require('../utils/logger')
 
 
 
@@ -21,6 +22,7 @@ class AuthController {
         }
         
         const existUser=await User.findOne({email})
+        logger.info('user exit',existUser)
         if(existUser){
             return res.status(400).json({
                 success:false,
@@ -45,7 +47,11 @@ class AuthController {
         })
 
        }catch(err){
-           console.log(err);
+        logger.error(err.message)
+        return res.status(500).json({
+            success:false,
+            message:"something went wrong"
+        })
        }    
     }
 
